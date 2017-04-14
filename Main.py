@@ -1,26 +1,34 @@
-import tkinter as tk
+from tkinter import  *
+from tkinter import filedialog
+
 row = 0
-class Application(tk.Frame):
+
+def set_folder(path):
+    path.set(filedialog.askdirectory()[-20:])
+
+class Application(Frame):
     def __init__(self, master=None):
         super().__init__(master)
         self.grid()
-        self.create_open_file_widget("Source Folder")
-        self.create_open_file_widget("Destination Folder")
+        source_folder = StringVar()
+        self.create_open_file_widget("Source Folder", source_folder)
+        dest_folder = StringVar()
+        self.create_open_file_widget("Destination Folder", dest_folder)
 
-    def create_open_file_widget(self, label_text):
-        self.text = tk.Label(self, text=label_text)
-        self.text.grid(row=row, column=0, padx=5, pady=5)
+    def create_open_file_widget(self, label_text, string):
+        text = Label(self, text=label_text)
+        text.grid(row=row, column=0, padx=5, pady=5)
 
-        self.folder = tk.Entry(self)
-        self.folder.grid(row=row, column=1, columnspan=3, padx=5, pady=5)
+        folder = Entry(self, width = 30, textvariable = string)
+        folder.grid(row=row, column=1, columnspan=3, padx=5, pady=5)
 
-        self.button = tk.Button(self, text="...")
-        self.button.grid(row=row, column=4, padx=5, pady=5)
+        button = Button(self, text="...", command=lambda: set_folder(string))
+        button.grid(row=row, column=4, padx=5, pady=5)
 
         global row
         row += 1
 
 
-root = tk.Tk()
+root = Tk()
 app = Application(master=root)
 app.mainloop()
