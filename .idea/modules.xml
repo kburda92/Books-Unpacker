@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/FileCleaner.iml" filepath="$PROJECT_DIR$/.idea/FileCleaner.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Books Unpacker.iml" filepath="$PROJECT_DIR$/.idea/Books Unpacker.iml" />
     </modules>
   </component>
 </project>
