@@ -13,9 +13,9 @@ class Application(Frame):
         master.protocol('WM_DELETE_WINDOW', self.__save_and_exit)
 
     def __create_widgets(self):
+        self.grid()
         entries = (("Source Folder", self.source_folder), ("Destination Folder", self.dest_folder))
         row = 0
-        self.grid()
         for entry in entries:
             text = Label(self, text = entry[0])
             text.grid(row=row, column=0, padx=5, pady=5)
@@ -27,8 +27,20 @@ class Application(Frame):
             button.grid(row=row, column=2, padx=5, pady=5)
             row += 1
 
-        self._search_button = Button(self, text="Search for books", command= self.__search_for_books)
+        self._search_button = Button(self, text="Search for books", command=self.__search_for_books)
         self._search_button.grid(row=0, column=3, rowspan=2, padx=5, pady=5)
+
+        selected_formats_Label = Label(self, text="Selected Formats:")
+        selected_formats_Label.grid(row=0, column=4, columnspan = 3, padx=5, pady=5,sticky=W)
+
+        check_buttons = ("pdf", "mobi", "epub")
+        col = 4
+        formats = {}
+        for check_button in check_buttons:
+            formats[check_button] = IntVar()
+            button = Checkbutton(self, text=check_button, variable=formats[check_button])
+            button.grid(row=1, column=col, padx=5, pady=5)
+            col += 1
 
         self.found_dirs = Listbox(self)
         self.found_dirs.grid(row=3, column=1, sticky=E+W, padx=5, pady=5)
