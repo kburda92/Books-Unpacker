@@ -2,12 +2,17 @@ from tkinter import  *
 from tkinter import filedialog
 from Config import Config
 from os import *
+from collections import defaultdict
+from Book import Book
 
 class Application(Frame):
     def __init__(self, master=None):
         super().__init__(master)
         self.source_folder = StringVar()
         self.dest_folder = StringVar()
+        self.checkbuttons = {}
+        self.format_vars = {}
+        self.books = []
         self.__load_paths()
         self.__create_widgets()
         master.protocol('WM_DELETE_WINDOW', self.__save_and_exit)
@@ -30,28 +35,24 @@ class Application(Frame):
         self._search_button = Button(self, text="Search for books", command=self.__search_for_books)
         self._search_button.grid(row=0, column=3, rowspan=2, padx=5, pady=5)
 
-        selected_formats_Label = Label(self, text="Selected Formats:")
-        selected_formats_Label.grid(row=0, column=4, columnspan = 3, padx=5, pady=5,sticky=W)
-
-        check_buttons = ("pdf", "mobi", "epub")
-        col = 4
-        formats = {}
-        for check_button in check_buttons:
-            formats[check_button] = IntVar()
-            button = Checkbutton(self, text=check_button, variable=formats[check_button])
-            button.grid(row=1, column=col, padx=5, pady=5)
-            col += 1
-
-        self.found_dirs = Listbox(self)
-        self.found_dirs.grid(row=3, column=1, sticky=E+W, padx=5, pady=5)
+        self.found_books = Listbox(self)
+        self.found_books.bind('<<ListboxSelect>>', self.__search_for_formats)
+        self.found_books.grid(row=3, column=0, columnspan=2, rowspan=10, sticky=E+W, padx=5, pady=5)
         scrollbar = Scrollbar(self)
-        scrollbar.grid(row=3,column=1,sticky=N+S+E+W, padx=5, pady=5)
-        self.found_dirs.config(yscrollcommand=scrollbar.set)
-        scrollbar.config(command=self.found_dirs.yview)
+        scrollbar.grid(row=3,column=1,rowspan=10,sticky=N+S+E+W, padx=5, pady=5)
+        self.found_books.config(yscrollcommand=scrollbar.set, state='disabled')
+        scrollbar.config(command=self.found_books.yview)
 
-        self.found_files = Listbox(self)
-        self.found_files.grid(row=3, column=2, columnspan=2, sticky=W+E, padx=5, pady=5)
-        # self.found_files.config(yscrollcommand=scrollbar.set)
+        selected_formats_Label = Label(self, text="Found Formats:")
+        selected_formats_Label.grid(row=3, column=2, columnspan = 3, padx=5, pady=5,sticky=N+W)
+        check_buttons = ("pdf", "mobi", "epub")
+        row=4
+        for check_button in check_buttons:
+            self.format_vars[check_button] = IntVar()
+            self.checkbuttons[check_button] = Checkbutton(self, text=check_button, variable=self.format_vars[check_button])
+            self.checkbuttons[check_button].grid(row=row, column=2, padx=5, pady=5,sticky=N+W)
+            self.checkbuttons[check_button]['state'] ='disabled'
+            row+=1
 
     def __load_paths(self):
         self.config = Config()
@@ -64,12 +65,35 @@ class Application(Frame):
              path.set(dir)
 
     def __search_for_books(self):
-        i=0
-        directories = [d for d in listdir(self.source_folder.get()) if path.isdir(path.join(self.source_folder.get(),d))]
-        for dir in list(directories):
-            self.found_dirs.insert(i, dir)
-            i+=1
-        self._search_button.configure(state='disabled')
+        books = [path.join(root, filename) for root, dirnames, filenames in walk(self.source_folder.get())
+                 for filename in filenames if filename.endswith('.pdf') or filename.endswith('.mobi') or filename.endswith('.epub')]
+
+        for book in list(books):
+            self.books.append(Book(book))
+
+        if len(self.books):
+            self.found_books['state'] = 'normal'
+
+        for book in self.books:
+            if book.name not in self.found_books.get(0, 'end'):
+                self.found_books.insert('end', book.name)
+
+        self._search_button['state'] = 'disabled'
+
+    def __search_for_formats(self, event):
+        for button in self.checkbuttons.values():
+            button['state'] = 'disabled'
+
+        for format_var in self.format_vars.values():
+            format_var.set(0)
+
+        selection = event.widget.curselection()
+        value = event.widget.get(selection[0])
+        formats = [n for n in self.books if n.name == value]
+        for format in formats:
+            print(format.ext)
+            self.checkbuttons[format.ext]['state'] = 'normal'
+            self.format_vars[format.ext].set(1)
 
     def __save_and_exit(self):
         self.config.source_path = self.source_folder.get()

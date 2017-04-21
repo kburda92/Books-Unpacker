@@ -6,7 +6,8 @@ class Book:
         self._path = path.dirname(source)
         filenameext = path.splitext(path.basename(source))
         self._name = filenameext[0]
-        self._ext = Format[filenameext[1][-3:].upper()]
+        dot_ext = filenameext[1]
+        self._ext = Format[dot_ext[dot_ext.rfind(".")+1:].upper()]
 
     @property
     def path(self):
@@ -18,4 +19,8 @@ class Book:
 
     @property
     def ext(self):
-        return self._ext
+        return self._ext.name.lower()
+
+    @property
+    def full_name(self):
+        return self._name + '.' + self._ext.name.lower()
