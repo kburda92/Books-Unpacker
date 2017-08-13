@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'mainwindow.ui'
 #
-# Created: Sun Aug 13 09:07:03 2017
+# Created: Sun Aug 13 09:17:23 2017
 #      by: PyQt5 UI code generator 5.3.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -17,28 +17,34 @@ class Ui_MainWindow(object):
         self.centralWidget.setObjectName("centralWidget")
         self.gridLayout = QtWidgets.QGridLayout(self.centralWidget)
         self.gridLayout.setObjectName("gridLayout")
-        self.lineEdit = QtWidgets.QLineEdit(self.centralWidget)
-        self.lineEdit.setObjectName("lineEdit")
-        self.gridLayout.addWidget(self.lineEdit, 0, 0, 1, 1)
-        self.pushButton = QtWidgets.QPushButton(self.centralWidget)
-        self.pushButton.setMaximumSize(QtCore.QSize(30, 16777215))
-        self.pushButton.setObjectName("pushButton")
-        self.gridLayout.addWidget(self.pushButton, 0, 1, 1, 1)
-        self.lineEdit_2 = QtWidgets.QLineEdit(self.centralWidget)
-        self.lineEdit_2.setObjectName("lineEdit_2")
-        self.gridLayout.addWidget(self.lineEdit_2, 1, 0, 1, 1)
-        self.pushButton_2 = QtWidgets.QPushButton(self.centralWidget)
+        self.lineEditSourceFolder = QtWidgets.QLineEdit(self.centralWidget)
+        self.lineEditSourceFolder.setObjectName("lineEditSourceFolder")
+        self.gridLayout.addWidget(self.lineEditSourceFolder, 0, 1, 1, 1)
+        self.buttonSourceFolder = QtWidgets.QPushButton(self.centralWidget)
+        self.buttonSourceFolder.setMaximumSize(QtCore.QSize(30, 16777215))
+        self.buttonSourceFolder.setObjectName("buttonSourceFolder")
+        self.gridLayout.addWidget(self.buttonSourceFolder, 0, 2, 1, 1)
+        self.lineEditDestFolder = QtWidgets.QLineEdit(self.centralWidget)
+        self.lineEditDestFolder.setObjectName("lineEditDestFolder")
+        self.gridLayout.addWidget(self.lineEditDestFolder, 1, 1, 1, 1)
+        self.buttonDestFolder = QtWidgets.QPushButton(self.centralWidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.pushButton_2.sizePolicy().hasHeightForWidth())
-        self.pushButton_2.setSizePolicy(sizePolicy)
-        self.pushButton_2.setMaximumSize(QtCore.QSize(30, 16777215))
-        self.pushButton_2.setObjectName("pushButton_2")
-        self.gridLayout.addWidget(self.pushButton_2, 1, 1, 1, 1)
-        self.listView = QtWidgets.QListView(self.centralWidget)
-        self.listView.setObjectName("listView")
-        self.gridLayout.addWidget(self.listView, 2, 0, 1, 2)
+        sizePolicy.setHeightForWidth(self.buttonDestFolder.sizePolicy().hasHeightForWidth())
+        self.buttonDestFolder.setSizePolicy(sizePolicy)
+        self.buttonDestFolder.setMaximumSize(QtCore.QSize(30, 16777215))
+        self.buttonDestFolder.setObjectName("buttonDestFolder")
+        self.gridLayout.addWidget(self.buttonDestFolder, 1, 2, 1, 1)
+        self.labelSourceFolder = QtWidgets.QLabel(self.centralWidget)
+        self.labelSourceFolder.setObjectName("labelSourceFolder")
+        self.gridLayout.addWidget(self.labelSourceFolder, 0, 0, 1, 1)
+        self.labelDestFolder = QtWidgets.QLabel(self.centralWidget)
+        self.labelDestFolder.setObjectName("labelDestFolder")
+        self.gridLayout.addWidget(self.labelDestFolder, 1, 0, 1, 1)
+        self.listViewBooks = QtWidgets.QListView(self.centralWidget)
+        self.listViewBooks.setObjectName("listViewBooks")
+        self.gridLayout.addWidget(self.listViewBooks, 2, 0, 1, 3)
         MainWindow.setCentralWidget(self.centralWidget)
 
         self.retranslateUi(MainWindow)
@@ -47,6 +53,8 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.pushButton.setText(_translate("MainWindow", "..."))
-        self.pushButton_2.setText(_translate("MainWindow", "..."))
+        self.buttonSourceFolder.setText(_translate("MainWindow", "..."))
+        self.buttonDestFolder.setText(_translate("MainWindow", "..."))
+        self.labelSourceFolder.setText(_translate("MainWindow", "Source Folder"))
+        self.labelDestFolder.setText(_translate("MainWindow", "Destination folder"))
 
