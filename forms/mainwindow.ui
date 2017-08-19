@@ -15,10 +15,10 @@
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout">
-    <item row="0" column="1">
+    <item row="2" column="3">
      <widget class="QLineEdit" name="lineEditSourceFolder"/>
     </item>
-    <item row="0" column="2">
+    <item row="2" column="4">
      <widget class="QPushButton" name="buttonSourceFolder">
       <property name="maximumSize">
        <size>
@@ -31,10 +31,10 @@
       </property>
      </widget>
     </item>
-    <item row="1" column="1">
+    <item row="5" column="3">
      <widget class="QLineEdit" name="lineEditDestFolder"/>
     </item>
-    <item row="1" column="2">
+    <item row="5" column="4">
      <widget class="QPushButton" name="buttonDestFolder">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
@@ -53,25 +53,33 @@
       </property>
      </widget>
     </item>
-    <item row="0" column="0">
+    <item row="2" column="2">
      <widget class="QLabel" name="labelSourceFolder">
       <property name="text">
        <string>Source Folder</string>
       </property>
      </widget>
     </item>
-    <item row="1" column="0">
+    <item row="5" column="2">
      <widget class="QLabel" name="labelDestFolder">
       <property name="text">
        <string>Destination folder</string>
       </property>
      </widget>
     </item>
-    <item row="2" column="0" colspan="3">
+    <item row="7" column="2" colspan="3">
      <widget class="QListView" name="listViewBooks"/>
+    </item>
+    <item row="0" column="2" colspan="3">
+     <widget class="QPushButton" name="buttonStart">
+      <property name="text">
+       <string>Start</string>
+      </property>
+     </widget>
     </item>
    </layout>
   </widget>
+  <widget class="QStatusBar" name="statusBar"/>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>

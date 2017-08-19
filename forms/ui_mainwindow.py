@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'mainwindow.ui'
 #
-# Created: Sun Aug 13 09:17:23 2017
+# Created: Sat Aug 19 22:19:58 2017
 #      by: PyQt5 UI code generator 5.3.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -19,14 +19,14 @@ class Ui_MainWindow(object):
         self.gridLayout.setObjectName("gridLayout")
         self.lineEditSourceFolder = QtWidgets.QLineEdit(self.centralWidget)
         self.lineEditSourceFolder.setObjectName("lineEditSourceFolder")
-        self.gridLayout.addWidget(self.lineEditSourceFolder, 0, 1, 1, 1)
+        self.gridLayout.addWidget(self.lineEditSourceFolder, 2, 3, 1, 1)
         self.buttonSourceFolder = QtWidgets.QPushButton(self.centralWidget)
         self.buttonSourceFolder.setMaximumSize(QtCore.QSize(30, 16777215))
         self.buttonSourceFolder.setObjectName("buttonSourceFolder")
-        self.gridLayout.addWidget(self.buttonSourceFolder, 0, 2, 1, 1)
+        self.gridLayout.addWidget(self.buttonSourceFolder, 2, 4, 1, 1)
         self.lineEditDestFolder = QtWidgets.QLineEdit(self.centralWidget)
         self.lineEditDestFolder.setObjectName("lineEditDestFolder")
-        self.gridLayout.addWidget(self.lineEditDestFolder, 1, 1, 1, 1)
+        self.gridLayout.addWidget(self.lineEditDestFolder, 5, 3, 1, 1)
         self.buttonDestFolder = QtWidgets.QPushButton(self.centralWidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -35,17 +35,23 @@ class Ui_MainWindow(object):
         self.buttonDestFolder.setSizePolicy(sizePolicy)
         self.buttonDestFolder.setMaximumSize(QtCore.QSize(30, 16777215))
         self.buttonDestFolder.setObjectName("buttonDestFolder")
-        self.gridLayout.addWidget(self.buttonDestFolder, 1, 2, 1, 1)
+        self.gridLayout.addWidget(self.buttonDestFolder, 5, 4, 1, 1)
         self.labelSourceFolder = QtWidgets.QLabel(self.centralWidget)
         self.labelSourceFolder.setObjectName("labelSourceFolder")
-        self.gridLayout.addWidget(self.labelSourceFolder, 0, 0, 1, 1)
+        self.gridLayout.addWidget(self.labelSourceFolder, 2, 2, 1, 1)
         self.labelDestFolder = QtWidgets.QLabel(self.centralWidget)
         self.labelDestFolder.setObjectName("labelDestFolder")
-        self.gridLayout.addWidget(self.labelDestFolder, 1, 0, 1, 1)
+        self.gridLayout.addWidget(self.labelDestFolder, 5, 2, 1, 1)
         self.listViewBooks = QtWidgets.QListView(self.centralWidget)
         self.listViewBooks.setObjectName("listViewBooks")
-        self.gridLayout.addWidget(self.listViewBooks, 2, 0, 1, 3)
+        self.gridLayout.addWidget(self.listViewBooks, 7, 2, 1, 3)
+        self.buttonStart = QtWidgets.QPushButton(self.centralWidget)
+        self.buttonStart.setObjectName("buttonStart")
+        self.gridLayout.addWidget(self.buttonStart, 0, 2, 1, 3)
         MainWindow.setCentralWidget(self.centralWidget)
+        self.statusBar = QtWidgets.QStatusBar(MainWindow)
+        self.statusBar.setObjectName("statusBar")
+        MainWindow.setStatusBar(self.statusBar)
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
@@ -57,4 +63,5 @@ class Ui_MainWindow(object):
         self.buttonDestFolder.setText(_translate("MainWindow", "..."))
         self.labelSourceFolder.setText(_translate("MainWindow", "Source Folder"))
         self.labelDestFolder.setText(_translate("MainWindow", "Destination folder"))
+        self.buttonStart.setText(_translate("MainWindow", "Start"))
 
